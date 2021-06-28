@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -19,31 +20,37 @@ public class Autor {
 	private Long id;
 	
 	@Column(nullable = false)
+	@NotEmpty
 	private String nome;
 	
 	@Column(nullable = false)
 	@Email
+	@NotEmpty
 	private String email;
 	
 	@Column(nullable = false, length = 400)
+	@NotEmpty
 	private String descricao;
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
-	private LocalDateTime instante;
-	
-	public Autor(String nome, @Email String email, String descricao, LocalDateTime instante) {
+	private LocalDateTime instante = LocalDateTime.now();
+		
+	public Autor() {
+		super();
+	}
+		
+	public Autor(String nome, @Email String email, String descricao) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.descricao = descricao;
-		this.instante = instante;
 	}
-	
-	public Autor() {
-		super();
+
+	public Long getId() {
+		return id;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
