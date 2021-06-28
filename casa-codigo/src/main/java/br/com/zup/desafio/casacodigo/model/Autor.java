@@ -23,7 +23,7 @@ public class Autor {
 	@NotEmpty
 	private String nome;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	@Email
 	@NotEmpty
 	private String email;
