@@ -1,22 +1,24 @@
 package br.com.zup.desafio.casacodigo.config.validacao;
 
-public class ErroConflito {
-
-	private Integer campo;
+public class ErroFormulario {
+	
+	private String campo;
 	private String mensagem;
 	
-	public ErroConflito(Integer campo, String mensagem) {
+	public ErroFormulario(String campo, String mensagem) {
 		super();
 		this.campo = campo;
 		this.mensagem = mensagem;
 	}
-
-	public Integer getCampo() {
+	
+	public String getCampo() {
 		return campo;
 	}
-
+	
 	public String getMensagem() {
 		return mensagem;
 	}
 	
+	
+
 }

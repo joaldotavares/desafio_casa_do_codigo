@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,16 +19,12 @@ public class Autor {
 	private Long id;
 	
 	@Column(nullable = false)
-	@NotEmpty
 	private String nome;
 	
 	@Column(nullable = false, unique = true)
-	@Email
-	@NotEmpty
 	private String email;
 	
 	@Column(nullable = false, length = 400)
-	@NotEmpty
 	private String descricao;
 	
 	@Column(nullable = false)
