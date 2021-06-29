@@ -6,11 +6,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.zup.desafio.casacodigo.config.validacao.UniqueValue;
 import br.com.zup.desafio.casacodigo.model.Autor;
 
 public class AutorDTO {
-
-	private Long id;
 
 	@NotEmpty
 	@NotNull
@@ -19,6 +18,7 @@ public class AutorDTO {
 	@Email
 	@NotEmpty
 	@NotNull
+	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	@NotNull
@@ -31,13 +31,8 @@ public class AutorDTO {
 	}
 
 	public AutorDTO(Autor autor) {
-		this.id = autor.getId();
 		this.email = autor.getEmail();
 		this.descricao = autor.getDescricao();
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public String getNome() {

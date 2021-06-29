@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.zup.desafio.casacodigo.config.validacao.UniqueValue;
 import br.com.zup.desafio.casacodigo.model.Categoria;
 
 public class CategoriaDTO {
@@ -12,6 +13,7 @@ public class CategoriaDTO {
 	@NotNull
 	@NotEmpty
 	@Length(min = 2)
+	@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
 	private String nome;
 
 	public CategoriaDTO() {
@@ -21,11 +23,7 @@ public class CategoriaDTO {
 	public CategoriaDTO(Categoria categoria) {
 		this.nome = categoria.getNome();
 	}
-
-	public Categoria converter() {
-		return new Categoria(nome);
-	}
-
+	
 	public String getNome() {
 		return nome;
 	}	

@@ -34,7 +34,7 @@ public class CategoriaController {
 	
 	@PostMapping
 	public void inserir(@RequestBody @Valid CategoriaDTO categoriaDto) {
-		Categoria categoria = categoriaDto.converter();
+		Categoria categoria = new Categoria(categoriaDto.getNome());
 		categoriaRepository.save(categoria);
 	}
 }
