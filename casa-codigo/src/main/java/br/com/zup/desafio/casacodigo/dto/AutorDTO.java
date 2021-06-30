@@ -23,10 +23,11 @@ public class AutorDTO {
 
 	}
 
-	public AutorDTO(Autor autor) {
-		this.nome = autor.getNome();
-		this.email = autor.getEmail();
-		this.descricao = autor.getDescricao();
+	public AutorDTO(@NotBlank String nome, @Email @NotBlank String email, @NotBlank String descricao) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.descricao = descricao;
 	}
 
 	public String getNome() {
