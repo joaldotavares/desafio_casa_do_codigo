@@ -1,32 +1,21 @@
 package br.com.zup.desafio.casacodigo.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
-import br.com.zup.desafio.casacodigo.config.validacao.UniqueValue;
 import br.com.zup.desafio.casacodigo.model.Autor;
 
-public class AutorDTO {
+public class AutorFormDTO {
 
-	@NotBlank
 	private String nome;
-
-	@Email
-	@NotBlank
-	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
-
-	@NotBlank
 	private String descricao;
+	private LocalDateTime instante;
 
-	public AutorDTO() {
-
-	}
-
-	public AutorDTO(Autor autor) {
+	public AutorFormDTO(Autor autor) {
 		this.nome = autor.getNome();
 		this.email = autor.getEmail();
 		this.descricao = autor.getDescricao();
+		this.instante = autor.getInstante();
 	}
 
 	public String getNome() {
@@ -41,7 +30,8 @@ public class AutorDTO {
 		return descricao;
 	}
 
-	public Autor converter() {
-		return new Autor(nome, email, descricao);
+	public LocalDateTime getInstante() {
+		return instante;
 	}
+
 }

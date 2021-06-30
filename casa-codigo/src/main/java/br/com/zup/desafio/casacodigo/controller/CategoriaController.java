@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.desafio.casacodigo.dto.CategoriaDTO;
+import br.com.zup.desafio.casacodigo.dto.CategoriaFormDTO;
 import br.com.zup.desafio.casacodigo.model.Categoria;
 import br.com.zup.desafio.casacodigo.repository.CategoriaRepository;
 
@@ -25,16 +26,18 @@ public class CategoriaController {
 		super();
 		this.categoriaRepository = categoriaRepository;
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<List<Categoria>> listar() {
 		List<Categoria> lista = categoriaRepository.findAll();
 		return ResponseEntity.ok().body(lista);
 	}
-	
+
 	@PostMapping
-	public void inserir(@RequestBody @Valid CategoriaDTO categoriaDto) {
-		Categoria categoria = new Categoria(categoriaDto.getNome());
-		categoriaRepository.save(categoria);
+	public ResponseEntity<CategoriaFormDTO> inserir(@RequestBody @Valid CategoriaDTO categoriaDto) {
+		Categoria categoria = categoriaDto.converter();
+		categoria = categoriaRepository.save(categoria);
+		return ResponseEntity.ok(new CategoriaFormDTO(categoria));
 	}
+
 }

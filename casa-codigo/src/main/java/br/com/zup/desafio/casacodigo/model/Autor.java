@@ -14,29 +14,30 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Autor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank
 	private String nome;
-	
+
 	@NotBlank
+	@Email
 	private String email;
-	
+
 	@NotBlank
-	@Column( length = 400)
+	@Column(length = 400)
 	private String descricao;
-	
+
 	@Column(nullable = false)
-	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime instante = LocalDateTime.now();
-		
+
 	public Autor() {
 		super();
 	}
-		
+
 	public Autor(String nome, @Email String email, String descricao) {
 		super();
 		this.nome = nome;
@@ -51,14 +52,17 @@ public class Autor {
 	public String getNome() {
 		return nome;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public LocalDateTime getInstante() {
 		return instante;
 	}
-	
+
 }
